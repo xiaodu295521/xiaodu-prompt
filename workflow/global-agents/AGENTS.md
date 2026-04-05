@@ -46,7 +46,13 @@ Recommended usage:
 
 If gstack skills stop working or look stale, refresh them from `C:\Users\29552\gstack` with `bash ./setup --host codex` from Git Bash.
 
+## project-workflow-standard
 
+Default workflow for all future projects:
+- Use `project-workflow-standard` as the baseline process by default.
+- At project start, user manually creates `<project>-old` and `<project>-new`, and AI must detect/validate the pair before implementation.
+- Implement only in `-new`; keep `-old` untouched until user confirms promotion.
+- If requirements/data are insufficient, pause and confirm missing items before proceeding.
+- Apply skill and sub-agent usage rules from `C:\Users\29552\.codex\skills\project-workflow-standard\SKILL.md`.
 - After any workflow-file update, sync latest workflow artifacts to `xiaodu-prompt` for cloud backup (commit first, push after user confirmation).
-
-
+- At project end, run a retro and evolve workflow rules/version.
