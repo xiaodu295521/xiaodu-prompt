@@ -1,53 +1,218 @@
-﻿# 椤圭洰鏍囧噯宸ヤ綔娴侊紙鍙紨杩涳級
+# Skillify Workflow
 
-鐗堟湰锛歚v1.2`  
-閫傜敤鑼冨洿锛氬悗缁墍鏈夋湰鍦伴」鐩紙榛樿鍚敤锛?
-## 1. 鏍稿績鐩爣
-- 淇濊瘉姣忚疆鏀瑰姩鍙洖閫€锛岄伩鍏嶈繃搴︽敼鍔ㄥ鑷撮」鐩笉鍙敤銆?- 鍦ㄤ俊鎭笉瓒虫椂鍏堢‘璁わ紝涓嶇洸鐩帹杩涖€?- 鏄庣‘鎶€鑳戒笌瀛愪唬鐞嗕娇鐢ㄦ椂鏈猴紝鎻愬崌绋冲畾鎬т笌鏁堢巼銆?- 姣忔鏇存柊宸ヤ綔娴佸悗鑷姩杩涘叆 GitHub 浜戠澶囦唤娴佺▼銆?
-## 2. 鍚姩鍓嶅繀鍋?1. 闅惧害璇勪及锛歚灏?/ 涓?/ 澶锛岃鏄庡垽鏂緷鎹€?2. 缁欏嚭寤鸿锛氭槸鍚﹀惎鐢ㄥ瓙浠ｇ悊锛屽缓璁渶灏忓垎宸ャ€?3. 缁欏嚭鎶€鑳借鍒掞細鏈疆棰勮浣跨敤鍝簺鎶€鑳藉強鍘熷洜銆?4. 鎵嬪姩鍒涘缓鍙岀洰褰曪紙椤圭洰鍚?+ 鍚庣紑锛夛細
-- `<project>-old`锛氱ǔ瀹氬熀绾匡紙鍙淇濇姢锛?- `<project>-new`锛氭湰杞敼鍔ㄥ尯锛堝敮涓€鍏佽鏀瑰姩浣嶇疆锛?5. AI 鍚姩鏃跺繀椤诲厛璇嗗埆鍙岀洰褰曪細
-- 鑻ュ綋鍓嶅湪 `*-new`锛氳嚜鍔ㄥ尮閰嶅悓绾?`*-old`
-- 鑻ュ綋鍓嶅湪 `*-old`锛氳嚜鍔ㄥ尮閰嶅悓绾?`*-new`
-- 鑻ヤ袱鑰呯己澶辨垨鍖归厤涓嶅敮涓€锛氬厛纭锛岀姝㈠疄鏂?
-## 3. 鍙岀洰褰曞畨鍏ㄦ満鍒讹紙寮哄埗锛?1. 姣忚疆寮€濮嬶細浠?`-old` 澶嶅埗鍒?`-new`銆?2. 鎵€鏈夊紑鍙戙€佹祴璇曘€佹墦鍖呭湪 `-new` 鎵ц銆?3. 鏈疆楠岃瘉閫氳繃鍓嶏紝`-old` 绂佹淇敼銆?4. 鑻ユ湰杞け璐ワ細涓㈠純 `-new`锛屽洖閫€浣跨敤 `-old`銆?5. 鑻ユ湰杞€氳繃涓旂敤鎴风‘璁わ細`-new -> -old` 鏅嬪崌锛屽啀杩涘叆涓嬩竴杞€?
-## 4. 淇℃伅涓嶈冻鍏堢‘璁わ紙寮哄埗锛?姣忎釜闃舵鎺ㄨ繘鍓嶅厛鍋氬厖瓒虫€ф鏌ワ紱鑻ヤ笉瓒筹紝鍏堣緭鍑猴細
-1. 缂哄け椤?2. 涓轰粈涔堥樆濉?3. 寤鸿榛樿鏂规
+## Purpose
 
-浠呭湪鐢ㄦ埛纭鍚庣户缁帹杩涖€?
-## 5. 鎶€鑳借皟鐢ㄨ鍒欙紙寮哄埗锛?1. 鐢ㄦ埛鐐瑰悕鎶€鑳斤細蹇呴』璋冪敤銆?2. 浠诲姟鏄庢樉鍖归厤鎶€鑳斤細蹇呴』璋冪敤銆?3. 璋冪敤姝ラ锛氬厛璇诲搴?`SKILL.md`锛屽啀鎵ц銆?4. 姣忚疆姹囨姤涓繀椤昏鏄庘€滀娇鐢ㄤ簡鍝簺鎶€鑳姐€佺敤閫旀槸浠€涔堚€濄€?5. 鎶€鑳戒笉鍙敤鏃讹細鏄庣‘鍘熷洜骞舵彁渚?fallback銆?6. 娴忚鍣ㄨ嚜鍔ㄥ寲/绔欑偣 QA 浼樺厛浣跨敤 gstack 鐩稿叧鎶€鑳姐€?
-## 6. 瀛愪唬鐞嗚皟鐢ㄨ鍒?1. 灏忛」鐩粯璁ゅ崟浜烘墽琛岋紝浣嗗厛缁欌€滄槸鍚﹀惎鐢ㄥ瓙浠ｇ悊鈥濆缓璁€?2. 涓?澶ч」鐩粯璁ゅ缓璁惎鐢ㄥ瓙浠ｇ悊锛屽苟缁欐渶灏忓垎宸ャ€?3. 閫傚悎鍚敤锛氬彲骞惰銆佷綆鑰﹀悎銆佺嫭绔嬫ā鍧椼€佽瘎瀹?楠岃瘉鍙媶鍒嗐€?4. 涓嶉€傚悎鍚敤锛氭敼鍔ㄥ皬銆佸悓鏂囦欢楂樿€﹀悎銆佸叧閿矾寰勫己渚濊禆銆?5. 浣跨敤鍚庡繀椤绘眹鎶ワ細浠ｇ悊瑙掕壊銆佽礋璐ｈ寖鍥淬€佺粨鏋滄憳瑕併€?
-## 7. UI 宸ヤ綔瑙勫垯
-1. UI 鏀瑰姩鍓嶅厛缁欓瑙堬紙Markdown 鎴栨湰鍦板浘鐗囷級锛屼笉鐩存帴鏀逛唬鐮併€?2. 鐢ㄦ埛纭瑙嗚鏂瑰悜鍚庡啀寮€濮嬫敼鍔ㄣ€?
-## 8. 姣忚疆瀹炴柦娴佺▼
-1. 鏄庣‘鏈疆鐩爣涓庨獙鏀舵爣鍑嗐€?2. 鍦?`-new` 涓疄鏂姐€?3. 鎵ц楠岃瘉锛?- 璇硶/瀵煎叆妫€鏌?- 鏍稿績鍔熻兘璺緞
-- 鍏抽敭寮傚父璺緞
-4. 杈撳嚭楠岃瘉缁撹涓庨闄┿€?5. 璇锋眰鐢ㄦ埛纭鏄惁鏅嬪崌鍒?`-old`銆?
-## 9. 鎵撳寘鍙戝竷瑙勫垯
-1. 鎵撳寘鍓嶆竻鐞嗘棫鍖呫€?2. 鎵撳寘鍚庢眹鎶ヤ骇鐗╋細璺緞銆佹椂闂淬€佸ぇ灏忋€?3. 鑻ョ敤鎴疯姹傗€滀粎淇濈暀瀹夎鍖呪€濓紝鍒犻櫎 `build/spec/cache` 绛変腑闂翠骇鐗┿€?
-## 10. 宸ヤ綔娴佹枃浠朵簯绔浠斤紙寮哄埗锛?姣忔鏇存柊浠ヤ笅浠讳竴鏂囦欢鍚庯紝蹇呴』杩涘叆澶囦唤娴佺▼锛?- `WORKFLOW.md`
-- `workflow-templates/SKILL.md`
-- `workflow-templates/PROMPT.txt`
-- `workflow-templates/RETRO_TEMPLATE.md`
-- `workflow-templates/WORKFLOW_CHANGELOG.md`
-- `C:\Users\29552\.codex\skills\xiaodu-propmt\SKILL.md`
+This file defines the default execution workflow for medium and large tasks in Skillify.
+The operating model is:
 
-澶囦唤鐩爣浠撳簱锛歚git@github.com:xiaodu295521/xiaodu-prompt.git`  
-鏈湴鍚屾鐩綍锛歚C:\Users\29552\Documents\xiaodu-prompt`
+- main agent orchestrates
+- sub-agents execute
+- the main agent integrates and validates
 
-浠撳簱鐩綍鏄犲皠锛?- `workflow/WORKFLOW.md`
-- `workflow/templates/*`
-- `workflow/global-skill/xiaodu-propmt/SKILL.md`
-- `workflow/global-agents/AGENTS.md`锛堝璁″揩鐓э級
+This document complements `AGENTS.md`.
 
-鎵ц瑙勫垯锛?1. 鍏?clone/pull 鏈€鏂?`main`銆?2. 鍚屾鏂囦欢鍒板搴斿瓙鐩綍銆?3. 鑻ユ棤鍙樻洿锛氭姤鍛娾€滄棤澶囦唤鏇存柊鈥濆苟缁撴潫銆?4. 鑻ユ湁鍙樻洿锛氬厛鎻愪氦鏈湴 commit锛屽睍绀烘憳瑕併€?5. push 鍓嶅繀椤诲緛寰楃敤鎴风‘璁ゃ€?6. 鑻?push 澶辫触锛氫繚鐣欐湰鍦?commit锛屼笉褰卞搷椤圭洰鏈湴娴佺▼銆?
-## 11. 椤圭洰鏀跺熬澶嶇洏锛堝彲婕旇繘锛?姣忎釜椤圭洰缁撴潫蹇呴』鎵ц娴佺▼澶嶇洏锛岃褰曪細
-1. 鏂伴毦鐐?2. 娴佺▼閬楁紡
-3. 鏂板瑙勫垯寤鸿
-4. 鍒犻櫎/绠€鍖栧缓璁?
-纭鍚庢洿鏂版祦绋嬬増鏈紙濡?`v1.2 -> v1.3`锛夛紝骞跺啓鍏ュ彉鏇磋褰曘€?
-## 12. 姣忚疆鍥哄畾姹囨姤鏍煎紡
-1. 鏈疆鐩爣
-2. 淇℃伅鍏呰冻鎬ф鏌?3. 鎶€鑳戒娇鐢ㄦ儏鍐?4. 瀛愪唬鐞嗕娇鐢ㄦ儏鍐?5. 鏀瑰姩鎽樿
-6. 楠岃瘉缁撴灉
-7. 椋庨櫓涓庡緟纭椤?8. 鏄惁寤鸿鏅嬪崌锛坄new -> old`锛?
+## Baseline Constraints
 
+- Work only in `Skillify-new`.
+- Keep `Skillify-old` untouched until the user confirms promotion.
+- Use the `xiaodu-propmt` process as the default workflow baseline.
+- If information is insufficient, report the gap before implementation.
+
+## Fixed Delivery Pipeline
+
+1. Verify directory pair
+   - Confirm `Skillify-old` and `Skillify-new` both exist.
+   - Confirm the current work target is `Skillify-new`.
+
+2. Ground in the actual repo
+   - Inspect current code, docs, configs, and constraints.
+   - Identify whether the task is small, medium, or large.
+
+3. Decide whether delegation is required
+   - Small tasks may stay local.
+   - Medium and large tasks should default to sub-agent execution.
+
+4. Start decomposition
+   - Delegate the first planning split to `task-distributor`.
+   - Require clear work units, ownership boundaries, dependencies, and completion conditions.
+
+5. Lock spec before wide implementation
+   - Use `product-manager` for scope and acceptance decisions.
+   - Use `ui-designer` for page hierarchy, visual system, and high-risk interaction choices.
+   - Use `api-designer` when frontend/backend contracts or service boundaries need to be fixed first.
+
+6. Dispatch scoped execution
+   - Assign each work unit to one owner.
+   - Prefer role-specific agents over general ones.
+   - Keep concurrent tasks non-overlapping in write scope.
+
+7. Integrate
+   - The main agent reviews returned work.
+   - Resolve conflicts, missing seams, and cross-task mismatches.
+   - If integration itself is the smallest coherent critical-path task, the main agent may do it locally.
+
+8. Validate
+   - Run the narrowest checks that prove the changed flow works.
+   - Use review and QA skills when appropriate.
+
+9. Report
+   - Summarize what was delegated, what landed, what was validated, and what remains.
+
+## Default Role Mapping
+
+### Planning and framing
+
+- `task-distributor`
+  - break broad work into concrete units
+  - define dependencies
+  - maximize safe parallelism
+
+- `product-manager`
+  - lock scope
+  - define success criteria
+  - separate now vs later
+
+- `business-analyst`
+  - normalize messy input
+  - extract acceptance criteria and requirement baseline
+
+- `project-manager`
+  - sequence larger workstreams
+  - manage dependency pressure and delivery order
+
+### Design and frontend
+
+- `ui-designer`
+  - visual direction
+  - page structure
+  - interaction-level design decisions
+
+- `frontend-developer`
+  - route, component, state, and UI behavior changes
+
+- `ui-fixer`
+  - narrow UI bug or small visual polish patch
+
+### Backend and integration
+
+- `backend-developer`
+  - service logic, API handlers, domain behavior
+
+- `api-designer`
+  - contract shape, compatibility, and boundary review
+
+- `payment-integration`
+  - checkout flow, payment status, webhook and settlement logic
+
+### Research and mapping
+
+- `search-specialist`
+  - quick discovery of likely source-of-truth files or sources
+
+- `code-mapper`
+  - execution path and ownership mapping before implementation
+
+## Critical Role Handling
+
+Treat these as critical when the task obviously depends on them:
+
+- `task-distributor` for broad parallelizable work
+- `ui-designer` for major UI/interaction decisions
+- `frontend-developer` for frontend-heavy execution
+- `backend-developer` for backend-heavy execution
+- `payment-integration` for checkout, billing, or payment state work
+- `api-designer` when frontend/backend contracts are the blocking decision
+
+If a critical role is missing:
+
+1. Check `C:\Users\29552\.codex\agents` first.
+2. Check official built-in roles second.
+3. If still missing, stop and tell the user:
+   - missing role name
+   - why it is required
+   - whether work can continue
+   - fallback approach
+   - delivery risk of the fallback
+
+Do not silently downgrade.
+Do not pretend a weak-fit role is good enough.
+
+## Concurrency Rules
+
+- Default concurrency target is `4-6` sub-tasks.
+- Only parallelize tasks with disjoint write scopes.
+- Do not run UI design and frontend implementation on the same component path at the same time.
+- Do not run two implementers against the same module unless ownership is explicitly split.
+- Use one blocking chain and several sidecar chains, not six blockers at once.
+
+## Main Agent Override Rule
+
+The main agent may directly implement work only when:
+
+- the task is small and self-contained
+- integration is the only missing step
+- the delegated result is blocking the critical path
+- conflict resolution requires one shared context
+
+The main agent should not absorb missing-specialist work without first telling the user when the missing role is critical.
+
+## Waiting Strategy
+
+- Do not spam waits.
+- Wait only when the next critical-path action depends on the result.
+- While agents are running, do non-overlapping work such as:
+  - validation prep
+  - acceptance criteria refinement
+  - integration planning
+  - risk review
+
+## Skill Usage Guide
+
+Use gstack skills when they materially improve the workflow.
+
+Recommended order by task phase:
+
+- product exploration: `gstack-office-hours`
+- ambition/scope review: `gstack-plan-ceo-review`
+- engineering plan lock: `gstack-plan-eng-review`
+- design plan lock: `gstack-plan-design-review`
+- pre-landing review: `gstack-review`
+- browser QA and verification: `gstack-qa` or `gstack-qa-only`
+
+Use `gstack-browse` for interactive browser validation instead of ad hoc browser tooling.
+
+## Validation Expectations
+
+Every meaningful task closeout should include:
+
+1. what was attempted
+2. what was delegated
+3. what changed
+4. what was verified
+5. what remains risky
+6. whether the result is ready for promotion
+
+Minimum validation should cover:
+
+- syntax or type safety where relevant
+- changed critical path
+- one high-risk edge condition
+- any user-visible regression risk introduced by the change
+
+## Project-End Rules
+
+- At project end, run a retro.
+- Capture:
+  - new bottlenecks
+  - missing roles
+  - weak prompts
+  - workflow changes worth standardizing
+- If workflow rules change, update this file and related workflow artifacts.
+
+## Workflow Artifact Reminder
+
+When workflow files are updated, follow the `xiaodu-propmt` backup rule:
+
+- sync workflow artifacts to the backup repository
+- commit before push
+- push only after user confirmation

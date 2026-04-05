@@ -57,3 +57,43 @@ Default workflow for all future projects:
 - After any workflow-file update, sync latest workflow artifacts to `xiaodu-prompt` for cloud backup (commit first, push after user confirmation).
 - At project end, run a retro and evolve workflow rules/version.
 
+## large-project-orchestration
+
+Default policy for medium and large projects:
+- Main agent should orchestrate by default.
+- Sub-agents should execute scoped work.
+- Prefer custom sub-agents from `C:\Users\29552\.codex\agents`.
+- Use official built-in roles only as fallback when no suitable custom role exists.
+
+Required orchestration flow:
+- Verify `<project>-old` and `<project>-new` before implementation.
+- Read repo constraints and current docs first.
+- Start broad work with `task-distributor`.
+- Lock scope and acceptance with role-specific agents before wide implementation.
+- Run parallel sub-tasks only when write scopes do not overlap.
+- Default parallelism target is `4-6` sub-tasks.
+- Main agent integrates, validates, and reports.
+
+Critical missing-role rule:
+- If a required sub-agent role is missing and that gap materially blocks the task, report it to the user before continuing.
+- Do not silently downgrade.
+- Do not pretend a weak-fit role is sufficient.
+- The report must include:
+  - missing role
+  - why it is required
+  - whether work can continue
+  - fallback option
+  - fallback risk
+
+Main-agent override rule:
+- The main agent may patch blocking critical-path work when delegation would slow delivery more than help it.
+- The main agent should not absorb large specialist work by default.
+
+Preferred gstack sequence for larger projects:
+- `gstack-office-hours`
+- `gstack-plan-ceo-review`
+- `gstack-plan-eng-review`
+- `gstack-plan-design-review`
+- `gstack-review`
+- `gstack-qa` or `gstack-qa-only`
+
