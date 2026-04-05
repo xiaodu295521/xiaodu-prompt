@@ -52,6 +52,18 @@ Default workflow for all future projects:
 - Use `xiaodu-propmt` as the baseline process by default.
 - At project start, user manually creates `<project>-old` and `<project>-new`, and AI must detect/validate the pair before implementation.
 - Implement only in `-new`; keep `-old` untouched until user confirms promotion.
+- Before implementation on a new project or major new phase, require product requirements input first.
+- Generate documents in this order:
+  - PRD first
+  - design doc second
+  - technical doc third
+- Do not dump the full document stack in one shot.
+- Align with the user at key checkpoints before continuing:
+  - product positioning and user
+  - scenarios and core flow
+  - page and interaction direction
+  - technical boundaries and evolution path
+- Once confirmed, treat those documents as the project baseline through implementation, QA, and release preparation.
 - If requirements/data are insufficient, pause and confirm missing items before proceeding.
 - Apply skill and sub-agent usage rules from `C:\Users\29552\.codex\skills\xiaodu-propmt\SKILL.md`.
 - After any workflow-file update, sync latest workflow artifacts to `xiaodu-prompt` for cloud backup (commit first, push after user confirmation).
@@ -71,8 +83,39 @@ Required orchestration flow:
 - Start broad work with `task-distributor`.
 - Lock scope and acceptance with role-specific agents before wide implementation.
 - Run parallel sub-tasks only when write scopes do not overlap.
-- Default parallelism target is `4-6` sub-tasks.
+- Default parallelism target is `2` sub-tasks.
+- Allow temporary promotion to `3` only when:
+  - there has been no recent `429 Too Many Requests`
+  - the third agent is lightweight and read-only
+  - the third agent does not block the critical path
 - Main agent integrates, validates, and reports.
+
+Phase-based dispatch default:
+- Phase A: only `task-distributor`
+- Phase B: at most `2` spec-locking agents
+- Phase C: at most `2` writing agents
+- Phase D: integration stays local unless one small patch agent is clearly needed
+
+Rate-limit handling:
+- On first `429 Too Many Requests`:
+  - stop spawning new agents
+  - wait `60-90` seconds
+  - retry only once
+  - shrink prompt context before retrying
+- On second `429 Too Many Requests`:
+  - reduce active concurrency to `1`
+  - switch remaining work to sequential execution
+  - explicitly report role, mitigation, serial fallback, and delivery impact
+- Never respond to `429` by silently dropping tasks or continuing batch spawn.
+
+Prompt and thread hygiene:
+- Do not default to `fork_context: true`.
+- Prefer passing file paths, fact summaries, and explicit deliverables over full thread history.
+- Reuse existing agents with `send_input` when possible instead of repeatedly spawning new ones.
+- Close completed or idle agents promptly.
+
+Local GitHub upload buffer rule:
+- If a project provides a local GitHub upload buffer such as `<project-root>\\github-upload`, sync workflow snapshots there first before any external GitHub backup or push flow.
 
 Critical missing-role rule:
 - If a required sub-agent role is missing and that gap materially blocks the task, report it to the user before continuing.
@@ -97,43 +140,4 @@ Preferred gstack sequence for larger projects:
 - `gstack-review`
 - `gstack-qa` or `gstack-qa-only`
 
-## large-project-orchestration
-
-Default policy for medium and large projects:
-- Main agent should orchestrate by default.
-- Sub-agents should execute scoped work.
-- Prefer custom sub-agents from `C:\Users\29552\.codex\agents`.
-- Use official built-in roles only as fallback when no suitable custom role exists.
-
-Required orchestration flow:
-- Verify `<project>-old` and `<project>-new` before implementation.
-- Read repo constraints and current docs first.
-- Start broad work with `task-distributor`.
-- Lock scope and acceptance with role-specific agents before wide implementation.
-- Run parallel sub-tasks only when write scopes do not overlap.
-- Default parallelism target is `4-6` sub-tasks.
-- Main agent integrates, validates, and reports.
-
-Critical missing-role rule:
-- If a required sub-agent role is missing and that gap materially blocks the task, report it to the user before continuing.
-- Do not silently downgrade.
-- Do not pretend a weak-fit role is sufficient.
-- The report must include:
-  - missing role
-  - why it is required
-  - whether work can continue
-  - fallback option
-  - fallback risk
-
-Main-agent override rule:
-- The main agent may patch blocking critical-path work when delegation would slow delivery more than help it.
-- The main agent should not absorb large specialist work by default.
-
-Preferred gstack sequence for larger projects:
-- `gstack-office-hours`
-- `gstack-plan-ceo-review`
-- `gstack-plan-eng-review`
-- `gstack-plan-design-review`
-- `gstack-review`
-- `gstack-qa` or `gstack-qa-only`
 
