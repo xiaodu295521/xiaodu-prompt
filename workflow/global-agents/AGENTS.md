@@ -1,4 +1,4 @@
-﻿## gstack
+## gstack
 
 gstack is installed globally for Codex at `C:\Users\29552\.codex\skills\gstack`, with the source repo at `C:\Users\29552\gstack`.
 
@@ -50,8 +50,10 @@ If gstack skills stop working or look stale, refresh them from `C:\Users\29552\g
 
 Default workflow for all future projects:
 - Use `xiaodu-propmt` as the baseline process by default.
-- At project start, user manually creates `<project>-old` and `<project>-new`, and AI must detect/validate the pair before implementation.
-- Implement only in `-new`; keep `-old` untouched until user confirms promotion.
+- At project start, user manually creates `<project>-old` and `<project>-new`, and AI must detect and validate the pair before implementation.
+- All implementation happens in `-new`.
+- `-old` is not an empty placeholder. Before every new development round, larger fix, rule update, or major implementation phase, first copy the complete current project baseline from `-new` into `-old`, then continue editing `-new`.
+- The goal of `-old` is to preserve the full “before this round started” version for fallback and comparison.
 - Before implementation on a new project or major new phase, require product requirements input first.
 - Generate documents in this order:
   - PRD first
@@ -59,15 +61,16 @@ Default workflow for all future projects:
   - technical doc third
 - Do not dump the full document stack in one shot.
 - Align with the user at key checkpoints before continuing:
-  - product positioning and user
-  - scenarios and core flow
-  - page and interaction direction
+  - product positioning and target user
+  - scenarios and core business flow
+  - page direction and interaction direction
   - technical boundaries and evolution path
 - Once confirmed, treat those documents as the project baseline through implementation, QA, and release preparation.
-- If requirements/data are insufficient, pause and confirm missing items before proceeding.
+- If requirements or data are insufficient, pause and confirm missing items before proceeding.
+- User-facing plans, implementation explanations, progress reports, and risk summaries should default to plain, easy-to-understand Chinese. Avoid dense technical jargon; if jargon is necessary, explain it immediately in simple terms.
 - Apply skill and sub-agent usage rules from `C:\Users\29552\.codex\skills\xiaodu-propmt\SKILL.md`.
-- After any workflow-file update, sync latest workflow artifacts to `xiaodu-prompt` for cloud backup (commit first, push after user confirmation).
-- At project end, run a retro and evolve workflow rules/version.
+- After any workflow-file update, sync latest workflow artifacts to the local GitHub upload buffer first when available, then to `xiaodu-prompt` for cloud backup.
+- At project end, run a retro and evolve workflow rules and version.
 
 ## large-project-orchestration
 
@@ -79,6 +82,7 @@ Default policy for medium and large projects:
 
 Required orchestration flow:
 - Verify `<project>-old` and `<project>-new` before implementation.
+- Verify that the current round's `new -> old` baseline snapshot has been completed before deeper implementation starts.
 - Read repo constraints and current docs first.
 - Start broad work with `task-distributor`.
 - Lock scope and acceptance with role-specific agents before wide implementation.
@@ -139,5 +143,3 @@ Preferred gstack sequence for larger projects:
 - `gstack-plan-design-review`
 - `gstack-review`
 - `gstack-qa` or `gstack-qa-only`
-
-
