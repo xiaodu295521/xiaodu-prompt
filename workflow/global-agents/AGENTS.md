@@ -1,145 +1,91 @@
 ## gstack
 
-gstack is installed globally for Codex at `C:\Users\29552\.codex\skills\gstack`, with the source repo at `C:\Users\29552\gstack`.
+如果你的环境里安装了 gstack，优先用它来做这些事情：
 
-For browser automation, site QA, deployment verification, screenshots, and reproducing live UI issues, prefer gstack skills over ad hoc browser tooling. In particular, use `gstack-browse` for interactive website work and do not use `mcp__claude-in-chrome__*` tools. If higher-priority system or developer instructions require built-in web browsing for research, verification, or citations, follow those instructions first.
+- 浏览器自动化
+- 网站 QA
+- 部署验证
+- 截图和页面复现
 
-Available gstack skills for this Codex install:
-- `gstack`
-- `gstack-autoplan`
-- `gstack-benchmark`
-- `gstack-browse`
-- `gstack-canary`
-- `gstack-careful`
-- `gstack-connect-chrome`
-- `gstack-cso`
-- `gstack-design-consultation`
-- `gstack-design-review`
-- `gstack-document-release`
-- `gstack-freeze`
-- `gstack-guard`
-- `gstack-investigate`
-- `gstack-land-and-deploy`
-- `gstack-office-hours`
-- `gstack-plan-ceo-review`
-- `gstack-plan-design-review`
-- `gstack-plan-eng-review`
-- `gstack-qa`
-- `gstack-qa-only`
-- `gstack-retro`
-- `gstack-review`
-- `gstack-setup-browser-cookies`
-- `gstack-setup-deploy`
-- `gstack-ship`
-- `gstack-unfreeze`
-- `gstack-upgrade`
+如果你自己的环境路径不是默认位置，请把下面这些占位符替换成你的实际路径：
 
-Recommended usage:
-- Start new product or feature exploration with `gstack-office-hours`
-- Stress-test scope and product direction with `gstack-plan-ceo-review`
-- Lock architecture and test strategy with `gstack-plan-eng-review`
-- Review design quality with `gstack-plan-design-review` or `gstack-design-review`
-- Use `gstack-review` before landing meaningful code changes
-- Use `gstack-qa` or `gstack-qa-only` for live app testing
-- Use `gstack-ship` for release prep and `gstack-land-and-deploy` after approval
-- Use `gstack-careful`, `gstack-freeze`, `gstack-guard`, and `gstack-unfreeze` for safety boundaries
+- `<YOUR_CODEX_HOME>`
 
-If gstack skills stop working or look stale, refresh them from `C:\Users\29552\gstack` with `bash ./setup --host codex` from Git Bash.
+推荐写法示例：
+
+- gstack skills path: `<YOUR_CODEX_HOME>/skills/gstack`
+- gstack source repo: `<YOUR_GSTACK_REPO_PATH>`
 
 ## xiaodu-propmt
 
-Default workflow for all future projects:
-- Use `xiaodu-propmt` as the baseline process by default.
-- At project start, user manually creates `<project>-old` and `<project>-new`, and AI must detect and validate the pair before implementation.
-- All implementation happens in `-new`.
-- `-old` is not an empty placeholder. Before every new development round, larger fix, rule update, or major implementation phase, first copy the complete current project baseline from `-new` into `-old`, then continue editing `-new`.
-- The goal of `-old` is to preserve the full “before this round started” version for fallback and comparison.
-- Before implementation on a new project or major new phase, require product requirements input first.
-- Generate documents in this order:
-  - PRD first
-  - design doc second
-  - technical doc third
-- Do not dump the full document stack in one shot.
-- Align with the user at key checkpoints before continuing:
-  - product positioning and target user
-  - scenarios and core business flow
-  - page direction and interaction direction
-  - technical boundaries and evolution path
-- Once confirmed, treat those documents as the project baseline through implementation, QA, and release preparation.
-- If requirements or data are insufficient, pause and confirm missing items before proceeding.
-- User-facing plans, implementation explanations, progress reports, and risk summaries should default to plain, easy-to-understand Chinese. Avoid dense technical jargon; if jargon is necessary, explain it immediately in simple terms.
-- Apply skill and sub-agent usage rules from `C:\Users\29552\.codex\skills\xiaodu-propmt\SKILL.md`.
-- After any workflow-file update, sync latest workflow artifacts to the local GitHub upload buffer first when available, then to `xiaodu-prompt` for cloud backup.
-- At project end, run a retro and evolve workflow rules and version.
+后续所有新项目默认可以采用这套流程。
+
+### 项目启动
+
+- 用户先创建 `<YOUR_PROJECT>-old` 和 `<YOUR_PROJECT>-new`
+- AI 开始实施前先识别并验证这对目录
+- 所有实际修改只发生在 `-new`
+
+### `old` 的意义
+
+- `-old` 不是空目录占位
+- 每次新一轮开发、较大修复、规则更新或大阶段开始前，先把 `-new` 的完整项目基线复制到 `-old`
+- 这样可以保留“这一轮开始前”的完整版本
+
+### 文档顺序
+
+- 先 PRD
+- 再设计文档
+- 再技术文档
+
+### 节点对齐
+
+继续下一步前，至少要和用户对齐这些内容：
+
+- 产品定位和目标用户
+- 核心场景和业务闭环
+- 页面和交互方向
+- 技术边界和演进路线
+
+### 用户沟通
+
+- 实施计划、汇报和风险说明默认使用通俗中文
+- 不要堆术语
+- 必须使用术语时，顺手补一句白话解释
 
 ## large-project-orchestration
 
-Default policy for medium and large projects:
-- Main agent should orchestrate by default.
-- Sub-agents should execute scoped work.
-- Prefer custom sub-agents from `C:\Users\29552\.codex\agents`.
-- Use official built-in roles only as fallback when no suitable custom role exists.
+中大项目默认策略：
 
-Required orchestration flow:
-- Verify `<project>-old` and `<project>-new` before implementation.
-- Verify that the current round's `new -> old` baseline snapshot has been completed before deeper implementation starts.
-- Read repo constraints and current docs first.
-- Start broad work with `task-distributor`.
-- Lock scope and acceptance with role-specific agents before wide implementation.
-- Run parallel sub-tasks only when write scopes do not overlap.
-- Default parallelism target is `2` sub-tasks.
-- Allow temporary promotion to `3` only when:
-  - there has been no recent `429 Too Many Requests`
-  - the third agent is lightweight and read-only
-  - the third agent does not block the critical path
-- Main agent integrates, validates, and reports.
+- 主代理负责编排
+- 子代理负责执行
+- 优先使用自定义子代理
+- 官方内置角色只做兜底
 
-Phase-based dispatch default:
-- Phase A: only `task-distributor`
-- Phase B: at most `2` spec-locking agents
-- Phase C: at most `2` writing agents
-- Phase D: integration stays local unless one small patch agent is clearly needed
+### 默认节奏
 
-Rate-limit handling:
-- On first `429 Too Many Requests`:
-  - stop spawning new agents
-  - wait `60-90` seconds
-  - retry only once
-  - shrink prompt context before retrying
-- On second `429 Too Many Requests`:
-  - reduce active concurrency to `1`
-  - switch remaining work to sequential execution
-  - explicitly report role, mitigation, serial fallback, and delivery impact
-- Never respond to `429` by silently dropping tasks or continuing batch spawn.
+- Phase A：只启 `task-distributor`
+- Phase B：最多 `2` 个规格锁定代理
+- Phase C：最多 `2` 个写入型代理
+- Phase D：主代理本地集成
 
-Prompt and thread hygiene:
-- Do not default to `fork_context: true`.
-- Prefer passing file paths, fact summaries, and explicit deliverables over full thread history.
-- Reuse existing agents with `send_input` when possible instead of repeatedly spawning new ones.
-- Close completed or idle agents promptly.
+### 限流规则
 
-Local GitHub upload buffer rule:
-- If a project provides a local GitHub upload buffer such as `<project-root>\\github-upload`, sync workflow snapshots there first before any external GitHub backup or push flow.
+- 默认并发 `2`
+- 只有在没有近期 `429`、且第 3 个代理是轻量只读时，才允许临时升到 `3`
+- 首次 `429`：等待 `60-90` 秒后缩小上下文重试一次
+- 第二次 `429`：降为串行
 
-Critical missing-role rule:
-- If a required sub-agent role is missing and that gap materially blocks the task, report it to the user before continuing.
-- Do not silently downgrade.
-- Do not pretend a weak-fit role is sufficient.
-- The report must include:
-  - missing role
-  - why it is required
-  - whether work can continue
-  - fallback option
-  - fallback risk
+### 关键缺角规则
 
-Main-agent override rule:
-- The main agent may patch blocking critical-path work when delegation would slow delivery more than help it.
-- The main agent should not absorb large specialist work by default.
+如果关键角色缺失并影响推进，必须明确告诉用户：
 
-Preferred gstack sequence for larger projects:
-- `gstack-office-hours`
-- `gstack-plan-ceo-review`
-- `gstack-plan-eng-review`
-- `gstack-plan-design-review`
-- `gstack-review`
-- `gstack-qa` or `gstack-qa-only`
+- 缺的是哪个角色
+- 为什么它关键
+- 当前还能不能继续
+- 可选降级方案是什么
+- 风险是什么
+
+### 规则备份建议
+
+如果你自己维护本地规则镜像目录，可以先同步到镜像目录，再决定是否推到云端仓库。

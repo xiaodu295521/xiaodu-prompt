@@ -1,46 +1,88 @@
-# xiaodu-prompt / Skillify Upload Workspace
+# xiaodu-prompt
 
-这个目录是 Skillify 项目在本地的 GitHub 上传缓冲仓库。
+一个面向 Codex / AI 编码协作场景的公共工作流模板仓库。
 
-它承担两类同步内容：
+这个仓库的目标很直接：
 
-- `workflow/`
-  - 全局工作流规则快照
-- `skillify/workflow/`
-  - Skillify 项目级工作流规则和基线文档快照
+- 帮你快速搭建一套可复制的项目规则流
+- 让新项目从需求、设计、技术文档开始，而不是直接开写
+- 给你一套可扩展的“主代理编排、子代理执行”协作方式
+- 提供一个真实示例，方便你理解模板怎么落到项目里
 
-## 使用原则
+## 适合谁
 
-- 源文件仍然是唯一编辑入口
-- 规则更新后，先更新源文件，再同步到本仓库
-- 本仓库用于本地 commit、分支管理和后续云端 push
-- 默认先推到专用分支，再决定是否合并到远端主分支
+- 想给 Codex 配一套稳定工作流的人
+- 希望项目从 PRD、设计文档、技术文档开始的人
+- 想把“旧版本留档、在新目录开发”这套机制固定下来的人
+- 想让 AI 输出更像团队研发流程，而不是零散对话的人
 
-## 与 Skillify 双目录规则的关系
+## 你能得到什么
 
-从现在开始，Skillify 项目进入新一轮开发前，先执行：
+- 一套全局规则入口
+- 一套项目级模板文件
+- 一套文档模板
+- 一套工作流资产模板
+- 一个真实案例：Skillify
 
-1. 将 `Skillify-new` 的完整项目基线同步到 `Skillify-old`
-2. 再修改 `Skillify-new`
-3. 若本轮涉及工作流规则更新，再同步相关规则文件到本仓库
+## 3 步快速开始
 
-也就是说，`old` 保存的是“开工前的完整版本”，不是空目录占位。
+1. 先看 [docs/getting-started.md](docs/getting-started.md)，了解最小上手流程。
+2. 从 [templates](templates) 复制全局模板和项目模板到你的环境。
+3. 再去看 [workflow](workflow) 里的全局规则，按你的项目需要做替换。
 
-## 用户沟通规则
+## 仓库结构
 
-上传到这里的工作流规则，默认要求主代理在给用户发送实施计划、阶段汇报和风险说明时使用通俗中文。
+- [workflow](workflow)
+  - 全局规则、全局技能和通用工作流资产
+- [templates](templates)
+  - 可以直接复制的模板文件
+- [docs](docs)
+  - 公开说明文档
+- [examples/skillify](examples/skillify)
+  - 真实案例，用来展示模板如何落地
 
-## 当前远端
+更详细的目录解释见 [docs/repo-structure.md](docs/repo-structure.md)。
 
-- `git@github.com:xiaodu295521/xiaodu-prompt.git`
+## 公开入口
 
-## 当前同步结构
+- 全局规则入口：[workflow/global-agents/AGENTS.md](workflow/global-agents/AGENTS.md)
+- 全局技能入口：[workflow/global-skill/xiaodu-propmt/SKILL.md](workflow/global-skill/xiaodu-propmt/SKILL.md)
+- 通用工作流总览：[workflow/WORKFLOW.md](workflow/WORKFLOW.md)
+- 模板入口：[templates](templates)
+- 示例入口：[examples/skillify](examples/skillify)
 
-- `workflow/WORKFLOW.md`
-- `workflow/global-agents/AGENTS.md`
-- `workflow/global-skill/xiaodu-propmt/SKILL.md`
-- `skillify/workflow/AGENTS.md`
-- `skillify/workflow/WORKFLOW.md`
-- `skillify/workflow/docs/*`
+## 如何复制到你自己的项目
 
-具体路径映射见 `MAPPING.md`。
+建议按这个顺序做：
+
+1. 在你的工作区创建 `<YOUR_PROJECT>-old` 和 `<YOUR_PROJECT>-new`
+2. 把项目模板复制到 `-new`
+3. 把全局模板复制到你的 Codex 全局规则位置
+4. 按占位符替换项目名、路径、仓库地址和角色说明
+5. 用 PRD、设计文档、技术文档启动第一轮开发
+
+详细替换说明见 [docs/customization-guide.md](docs/customization-guide.md)。
+
+## 示例项目
+
+Skillify 被保留为一个真实示例，但它不是主模板。
+
+你应该先用模板起项目，再看示例理解“模板在真实项目中会长成什么样”。示例入口见 [examples/skillify/README.md](examples/skillify/README.md)。
+
+## 常见问题
+
+### 这个仓库是不是你个人本地同步仓库？
+
+不是。这个公开仓库现在按公共模板库整理，不包含你必须照搬的个人本地路径和私有同步习惯。
+
+### 我需要完全照抄 Skillify 吗？
+
+不需要。Skillify 是案例，不是模板本体。
+
+### 我能只用其中一部分吗？
+
+可以。你可以只用全局规则，也可以只用项目模板，或者两者一起用。
+
+### 后续规则升级怎么办？
+
+看 [docs/upgrade-guide.md](docs/upgrade-guide.md)。
