@@ -1,40 +1,57 @@
-# Skillify 示例项目
+# Skillify 示例
 
-这是一个真实案例的公开整理版，用来说明这套模板在实际项目中会如何落地。
+Skillify 是这个公共模板仓库里的真实案例。
 
-## 这个示例适合拿来看什么
+它的作用不是让你原样照抄，而是让你看清楚三件事：
 
-- 看一个项目级 `AGENTS` 和 `WORKFLOW` 会写成什么样
-- 看 PRD、UI 文档、技术文档如何组成长期基线
-- 看“首页转化 -> 登录 -> 补全联系方式 -> 选购 -> 支付 -> 订单”这类完整链路，如何被文档化
+- 模板在真实项目里会怎么落地
+- 项目级规则如何继承全局规则
+- 文档基线、交接文档和工作流规则如何一起使用
 
-## 这个示例不建议直接照抄什么
+## 这个示例展示了什么
 
-- Skillify 的产品定位
-- Skillify 的页面清单
-- Skillify 的业务术语
-- Skillify 的交付方式
+- 双目录机制怎么执行
+- 项目级 `AGENTS` 和 `WORKFLOW` 怎么写
+- PRD、UI、技术文档如何成为后续开发基线
+- 交接文档和历史存档如何配合
+- Web 项目的最小 CI/CD 规则如何接入项目说明
 
-这些内容属于这个项目本身，不是通用模板。
+## 适合怎么用
 
-## 推荐阅读顺序
+推荐用法：
 
-1. [AGENTS.md](AGENTS.md)
-2. [WORKFLOW.md](WORKFLOW.md)
-3. [docs/README.md](docs/README.md)
-4. [docs/01-product-requirements.md](docs/01-product-requirements.md)
-5. [docs/02-ui-design-spec.md](docs/02-ui-design-spec.md)
-6. [docs/03-technical-architecture.md](docs/03-technical-architecture.md)
+1. 先用模板起你自己的项目
+2. 再回来看 Skillify 的规则和文档结构
+3. 对照理解“模板在真实项目里长什么样”
 
-## 通用和专属怎么区分
+不推荐用法：
 
-- 通用思路：
-  - 双目录基线快照
-  - 文档先行
-  - 主代理编排、子代理执行
-  - 里程碑前回看基线文档
-- Skillify 专属：
-  - 面向中国个人创作者的 AI 智能体技能定制服务
-  - 手机号和邮箱双联系方式补全
-  - 方案选购页常驻 AI 顾问区
-  - mock 支付与订单回看链路
+- 直接把 Skillify 的产品描述照搬到你的项目
+- 把 Skillify 的页面定义原封不动复制过去
+- 不做替换就把示例文件当正式项目文件
+
+## 示例入口
+
+- 项目规则：[AGENTS.md](AGENTS.md)
+- 项目流程：[WORKFLOW.md](WORKFLOW.md)
+- 文档说明：[docs/README.md](docs/README.md)
+
+## 读取顺序
+
+建议顺序：
+
+1. 先看根仓库 [README.md](../../README.md)
+2. 再看本文件
+3. 再看 `AGENTS.md`
+4. 再看 `WORKFLOW.md`
+5. 最后看 `docs/*`
+
+## 注意
+
+Skillify 是案例，不是模板本体。
+
+真正要复制到你项目里的，优先还是：
+
+- `templates/global/*`
+- `templates/project/*`
+- `workflow/*`
